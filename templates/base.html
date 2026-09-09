@@ -13,7 +13,6 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="/"><i data-lucide="sparkles"></i> live<span>people</span></a>
     <nav class="desktop-nav">{% for url,label,key in nav %}<a class="{% if active == key %}selected{% endif %}" href="{{url}}">{{label}}</a>{% endfor %}</nav>
     <details class="mobile-nav">
       <summary aria-label="Menyunu aç"><i data-lucide="menu"></i></summary>
