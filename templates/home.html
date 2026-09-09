@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="feed-layout">
+  <div class="feed-main">
+    <div class="section-head"><h2>Paylaşımlar</h2></div>
+    <form id="share-box" class="share-box" method="post" action="/posts/create/">
+      {% csrf_token %}
+      <textarea name="body" placeholder="Nə düşünürsən?" required></textarea>
+      <div class="share-foot"><span class="muted">Fikirlərini icma ilə bölüş</span><button class="primary">Paylaş <span>↗</span></button></div>
+    </form>
+    {% for post in posts %}
+      <article class="post-card">
+        <div class="post-head">
+          <span class="avatar tiny">{{ post.author.username|slice:":1"|upper }}</span>
+          <div><b>{{ post.author.username }}</b><small>{{ post.author.age }} yaş · {{ post.author.city }} · {{ post.created_at|date:"d M, H:i" }}</small></div>
+          {% if post.author.is_online %}<i class="online-dot"></i>{% endif %}
+        </div>
+        <p class="post-body">{{ post.body }}</p>
+        <div class="post-actions">
+          <form method="post" action="/posts/{{ post.pk }}/like/">{% csrf_token %}<button class="post-action {% if request.user in post.likes.all %}liked{% endif %}">♥ {{ post.likes.count }} Bəyənmə</button></form>
+          <span>◌ {{ post.comments.count }} Şərh</span>
+        </div>
+        {% for comment in post.comments.all %}<div class="comment"><b>{{ comment.author.username }}</b><span>{{ comment.body }}</span></div>{% endfor %}
+        <form class="comment-form" method="post" action="/posts/{{ post.pk }}/comment/"><input name="body" placeholder="Şərh yaz..." required>{% csrf_token %}<button>Göndər</button></form>
+      </article>
+    {% empty %}<div class="empty">Hələ paylaşım yoxdur. İlk paylaşımı sən et.</div>{% endfor %}
+  </div>
+  <aside>
+    <div class="section-head"><h2>Online</h2><a class="text-link" href="/online/">Hamısına bax →</a></div>
+    <section class="people-grid side-people">{% for person in people %}{% include "partials/card.html" %}{% empty %}<div class="empty">Hazırda online istifadəçi yoxdur.</div>{% endfor %}</section>
+  </aside>
+</section>
+{% endblock %}

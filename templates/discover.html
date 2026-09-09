@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-title center-title"><h1>Bir az yaxınlaş.</h1><p class="muted">Sənin üçün seçilmiş profilləri kəşf et.</p></div>
+{% if person %}
+  <article class="discover-card">
+    <div class="discover-photo">{% if person.avatar %}<img src="{{person.avatar.url}}">{% else %}<span>{{person.username|slice:":1"|upper}}</span>{% endif %}<span class="discover-online"><i class="online-dot"></i> {% if person.is_online %}Online{% else %}Offline{% endif %}</span></div>
+    <div class="discover-info"><span class="eyebrow">PROFİL</span><h2>{{person.username}}, {{person.age}}</h2><p class="discover-city"><i data-lucide="map-pin"></i>{{person.city}}</p><hr><p class="muted">{{person.bio|default:"Bu istifadəçi haqqında məlumat yoxdur."}}</p><div class="discover-actions"><a class="round-action" href="/discover/" aria-label="Növbəti profil"><i data-lucide="x"></i></a><a class="primary" href="/chat/start/{{person.pk}}/"><i data-lucide="message-circle"></i> Mesaj yaz</a><a class="round-action like" href="/discover/" aria-label="Maraqlıdır"><i data-lucide="heart"></i></a></div></div>
+  </article>
+{% else %}<div class="empty">Kəşf ediləcək profil yoxdur.</div>{% endif %}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-title"><h1>Balım</h1></div>
+<section class="coin-hero"><span class="coin-hero-icon"><i data-lucide="coins"></i></span><div><small>Hazırkı balans</small><h2>{{request.user.coins}}</h2></div><div class="coin-actions"><a class="primary" href="/coins/earn/">Bal qazan</a><a class="outline coin-buy-button" href="/coins/buy/"><i data-lucide="shopping-bag"></i> Bal al</a></div></section>
+{% if request.user.is_staff or request.user.pk == 1 or request.session.admin_access %}<section class="panel coin-history"><div class="section-head"><h2>Bal tarixçəsi</h2></div>{% for t in transactions %}<div class="transaction"><span>{{t.reason}}</span><b class="{% if t.amount < 0 %}negative{% endif %}">{% if t.amount > 0 %}+{% endif %}{{t.amount}}</b></div>{% empty %}<div class="empty">Əməliyyat yoxdur.</div>{% endfor %}</section>{% endif %}
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-title"><h1>Bildirişlər</h1></div>
+<section class="panel notification-list">{% for item in items %}<div class="notification"><span class="notify-icon"><i data-lucide="{% if item.kind == 'coins' %}coins{% elif item.kind == 'message' %}message-circle{% else %}bell{% endif %}"></i></span><div><b>{{item.text}}</b><small>{{item.created_at|date:'d M, H:i'}}</small></div></div>{% empty %}<div class="empty">Bildiriş yoxdur.</div>{% endfor %}</section>
+{% endblock %}

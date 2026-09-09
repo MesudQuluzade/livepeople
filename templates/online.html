@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block content %}<section class="people-grid">{% for person in people %}{% include "partials/card.html" %}{% empty %}<div class="empty">Hazırda heç kim online deyil.</div>{% endfor %}</section>{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="search-page">
+  <div class="search-intro"><p class="eyebrow">İCMA</p><h1>İnsanları axtar</h1><p class="muted">Ad, şəhər və ya maraq sahəsinə görə yeni insanları kəşf et.</p></div>
+  <form class="search search-panel" method="get"><i data-lucide="search"></i><input name="q" value="{{q}}" placeholder="Axtarışa başla..." autocomplete="off"><button class="primary">Axtar</button></form>
+  {% if q %}<div class="results-label">“{{q}}” üçün nəticələr</div>{% endif %}
+  <section class="people-grid search-results">{% for person in people %}{% include "partials/card.html" %}{% empty %}<div class="empty search-empty">{% if q %}Bu axtarış üçün nəticə tapılmadı.{% else %}Axtarışa başla.{% endif %}</div>{% endfor %}</section>
+</div>
+{% endblock %}

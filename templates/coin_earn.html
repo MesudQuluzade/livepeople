@@ -1,0 +1,4 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="coin-earn-page"><div class="page-title"><h1>Gündəlik bonus</h1><p class="muted">Hər gün bir dəfə 50 bal qazan və balansını artır.</p></div><section class="panel coin-action-panel"><span class="coin-action-icon"><i data-lucide="coins"></i></span><h2>50 bal bonus</h2><p class="muted">Bu gün üçün bonusun database-də yoxlanılır.</p><form method="post">{% csrf_token %}<button class="primary" {% if claimed %}disabled{% endif %}>{% if claimed %}Bu gün artıq alınıb{% else %}50 balı hesabıma əlavə et{% endif %}</button></form></section></div>
+{% endblock %}

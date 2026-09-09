@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Live People</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="/static/feed.css">
+  <link rel="stylesheet" href="/static/modern.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><i data-lucide="sparkles"></i> live<span>people</span></a>
+    <nav class="desktop-nav">{% for url,label,key in nav %}<a class="{% if active == key %}selected{% endif %}" href="{{url}}">{{label}}</a>{% endfor %}</nav>
+    <details class="mobile-nav">
+      <summary aria-label="Menyunu aç"><i data-lucide="menu"></i></summary>
+      <div class="mobile-nav-menu">{% for url,label,key in nav %}<a class="{% if active == key %}selected{% endif %}" href="{{url}}">{{label}}</a>{% endfor %}</div>
+    </details>
+    <div class="actions">
+      <a href="/notifications/" class="icon" aria-label="Bildirişlər"><i data-lucide="bell"></i>{% if notifications_count %}<b>{{notifications_count}}</b>{% endif %}</a>
+      <a class="coins" href="/coins/"><i data-lucide="coins"></i> {{request.user.coins|default:1250}}</a>
+      <a class="avatar tiny" href="/profile/{{request.user.pk}}/" aria-label="Profil">{{request.user.username|slice:":1"|upper}}</a>
+      <a class="logout-link" href="/logout/" aria-label="Çıxış"><i data-lucide="log-out"></i><span>Çıxış</span></a>
+    </div>
+  </header>
+  <main class="shell">
+    {% if messages %}{% for m in messages %}<div class="toast">{{m}}</div>{% endfor %}{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

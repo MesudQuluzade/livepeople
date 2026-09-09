@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="coin-buy-page"><div class="page-title"><h1>Bal al</h1><p class="muted">Bal paketlərindən birini seç və balansını artır.</p></div>
+<section class="coin-packages">{% for amount,price in packages.items %}<form class="coin-package" method="post">{% csrf_token %}<div class="coin-package-icon"><i data-lucide="coins"></i></div><div class="coin-amount"><strong>{{amount}}</strong><span>bal</span></div><div class="coin-price">{{price}} AZN</div><input type="hidden" name="coins" value="{{amount}}"><button class="primary"><i data-lucide="check"></i> Alışı təsdiqlə</button></form>{% endfor %}</section>
+<a class="outline back-coins" href="/coins/"><i data-lucide="arrow-left"></i> Balım</a></div>
+{% endblock %}

@@ -1,0 +1,11 @@
+from django.urls import path
+from . import views
+urlpatterns=[
+ path('',views.home,name='home'),path('posts/create/',views.create_post,name='create_post'),path('posts/<int:pk>/like/',views.like_post,name='like_post'),path('posts/<int:pk>/comment/',views.comment_post,name='comment_post'),
+ path('login/',views.login_view,name='login'),path('register/',views.register_view,name='register'),path('logout/',views.logout_view,name='logout'),path('discover/',views.discover,name='discover'),path('online/',views.online,name='online'),
+ path('search/',views.search,name='search'),path('profile/<int:pk>/',views.profile,name='profile'),path('profile/edit/',views.edit_profile,name='edit_profile'),path('report/<int:pk>/',views.submit_complaint,name='submit_complaint'),
+ path('chat/',views.chat,name='chat'),path('chat/start/<int:pk>/',views.start_chat,name='start_chat'),path('chat/send/',views.send_message,name='send_message'),path('chat/messages/<int:pk>/',views.chat_messages,name='chat_messages'),path('chat/delete/<int:pk>/',views.delete_chat,name='delete_chat'),
+ path('rooms/',views.rooms,name='rooms'),path('rooms/<int:pk>/',views.room_detail,name='room_detail'),path('rooms/send/',views.send_room_message,name='send_room_message'),path('notifications/',views.notifications,name='notifications'),
+ path('coins/',views.coins,name='coins'),path('coins/earn/',views.earn_coins,name='earn_coins'),path('coins/buy/',views.buy_coins,name='buy_coins'),path('coins/send/<int:pk>/',views.send_coins,name='send_coins'),
+ path('admin-panel/',views.admin_panel,name='admin_panel'),path('admin-panel/users/<int:pk>/',views.admin_user_profile,name='admin_user_profile'),path('admin-panel/users/<int:pk>/messages/',views.admin_user_messages,name='admin_user_messages'),path('admin-panel/users/<int:pk>/messages/delete/',views.admin_delete_user_messages,name='admin_delete_user_messages'),path('admin-panel/users/<int:pk>/message/send/',views.admin_send_user_message,name='admin_send_user_message'),path('admin-panel/users/<int:pk>/complaints/<int:complaint_id>/',views.admin_complaint_action,name='admin_complaint_action'),path('admin-panel/posts/',views.admin_posts,name='admin_posts'),path('admin-panel/posts/<int:pk>/delete/',views.admin_delete_post,name='admin_delete_post'),path('admin-panel/action/',views.admin_action,name='admin_action')
+]
