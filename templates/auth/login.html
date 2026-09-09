@@ -1,4 +1,26 @@
 <!doctype html>
 <html lang="az">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Live People — Daxil ol</title><link rel="stylesheet" href="/static/app.css"><link rel="stylesheet" href="/static/modern.css"><script src="https://unpkg.com/lucide@latest"></script></head>
-<body class="auth"><section class="auth-card"><h1>İnsanlar burada<br><em>canlanır.</em></h1><p class="muted">Online insanları kəşf et, söhbətə başla və yeni hekayələr yarat.</p>{% for m in messages %}<div class="error">{{m}}</div>{% endfor %}<form method="post">{% csrf_token %}<label>İstifadəçi adı<input name="username" required placeholder="İstifadəçi adınız"></label><label>Şifrə<input name="password" type="password" required placeholder="••••••••"></label><button class="primary full">Daxil ol <span>→</span></button></form><p class="center muted">Hesabın yoxdur? <a href="/register/">Qeydiyyatdan keç</a></p></section><div class="auth-orb orb1"></div><div class="auth-orb orb2"></div></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>cat tanisliq - Daxil ol</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="/static/modern.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="auth">
+  <section class="auth-card">
+    <h1>İnsanlar burada<br><em>canlanır.</em></h1>
+    <p class="muted">Online insanları kəşf et, söhbətə başla və yeni hekayələr yarat.</p>
+    {% for m in messages %}<div class="error">{{ m }}</div>{% endfor %}
+    <form method="post">
+      {% csrf_token %}
+      <label>İstifadəçi adı<input name="username" required placeholder="İstifadəçi adınız"></label>
+      <label>Şifrə<input name="password" type="password" required placeholder="••••••••"></label>
+      <button class="primary full">Daxil ol <span>→</span></button>
+    </form>
+    <p class="center muted">Hesabın yoxdur? <a href="/register/">Qeydiyyatdan keç</a></p>
+  </section>
+  <div class="auth-orb orb1"></div><div class="auth-orb orb2"></div>
+</body>
+</html>
